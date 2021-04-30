@@ -10,6 +10,29 @@ namespace HomeWork8
     {
         static void Main(string[] args)
         {
+            Department department = new Department("Department1", DateTime.Parse("30.04"));
+
+            for (int i = 0; i < 2; i++)
+            {
+                department.AddNewWorker();
+                Console.Clear();
+            }
+
+            department.AddSubDepartment();
+
+            for (int i = 0; i < 2; i++)
+            {
+                department.SubDepartment[0].AddNewWorker();
+                Console.Clear();
+            }
+
+            for (int i = 0; i < 2; i++)
+            {
+                department.SubDepartment[0].AddSubDepartment();
+                Console.Clear();
+            }
+
+            department.PrintAllInfoDepartment();
         }
     }
 }

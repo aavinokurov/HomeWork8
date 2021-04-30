@@ -13,7 +13,7 @@ namespace HomeWork8
         /// <summary>
         /// Сотрудники
         /// </summary>
-        List<Worker> workers;
+        private List<Worker> workers;
 
         #endregion
 
@@ -117,6 +117,87 @@ namespace HomeWork8
             else
             {
                 Console.WriteLine("В департаменте больше миллиона сотрудников!");
+            }
+        }
+
+        /// <summary>
+        /// Добавить вложенный департамент
+        /// </summary>
+        public void AddSubDepartment()
+        {
+            if (SubDepartment == null)
+            {
+                SubDepartment = new List<Department>();
+            }
+
+            string name;
+            DateTime date;
+
+            do
+            {
+                Console.WriteLine("Введите название департамента:");
+                name = Console.ReadLine();
+            } while (string.IsNullOrEmpty(name));
+
+            do
+            {
+                Console.WriteLine("Введите дату создания департамента:");
+            } while (!DateTime.TryParse(Console.ReadLine(), out date));
+
+            SubDepartment.Add(new Department(name, date));
+        }
+
+        /// <summary>
+        /// Вывод всех сотрудников департамента
+        /// </summary>
+        public void PrintAllWorkers()
+        {
+            Console.WriteLine($"{"Фамилия",15}{"Имя",15}{"Возраст",10}{"Департамент",15}{"Идентификатор",15}{"Зарплата",10}");
+
+            foreach (var item in workers)
+            {
+                Console.WriteLine($"{item.Surname,15}{item.Name,15}{item.Age,10}{item.Department.Name,15}{item.Id,15}{item.Salary,10}");
+            }
+        }
+
+        /// <summary>
+        /// Вывод информации о департаменте
+        /// </summary>
+        public void PrintInfoDepartment()
+        {
+            Console.WriteLine($"Имя департамента: {Name}.\n" +
+                              $"Дата создания: {DateCreation.ToShortDateString()}.");
+
+            if (SubDepartment != null)
+            {
+                Console.WriteLine($"Количество вложенных департаментов {SubDepartment.Count}.");
+            }
+
+            if (workers.Count > 0)
+            {
+                this.PrintAllWorkers();
+            }
+            else
+            {
+                Console.WriteLine("Сотрудников нет.");
+            }
+        }
+
+        /// <summary>
+        /// Вывод информации о департаменте c вложенным департаментами
+        /// </summary>
+        public void PrintAllInfoDepartment()
+        {
+            this.PrintInfoDepartment();
+            
+            if (SubDepartment != null)
+            {
+                foreach (var item in SubDepartment)
+                {
+                    Console.WriteLine($"Вышестоящий департамент: {this.Name}");
+
+                    item.PrintAllInfoDepartment();
+                }
             }
         }
 
