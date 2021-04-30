@@ -14,7 +14,7 @@ namespace HomeWork8
 
             for (int i = 0; i < 2; i++)
             {
-                department.AddNewWorker();
+                department.AddWorker();
                 Console.Clear();
             }
 
@@ -22,7 +22,7 @@ namespace HomeWork8
 
             for (int i = 0; i < 2; i++)
             {
-                department.SubDepartment[0].AddNewWorker();
+                department.SubDepartment[0].AddWorker();
                 Console.Clear();
             }
 

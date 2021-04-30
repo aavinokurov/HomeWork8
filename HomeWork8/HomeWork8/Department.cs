@@ -75,7 +75,16 @@ namespace HomeWork8
         /// <summary>
         /// Добавить нового работника
         /// </summary>
-        public void AddNewWorker()
+        public void AddWorker()
+        {
+            AddWorker(workers.Count + 1);
+        }
+
+        /// <summary>
+        /// Добавить нового работника
+        /// </summary>
+        /// <param name="idWorker">Идентификатор сотрудника</param>
+        private void AddWorker(int idWorker)
         {
             if (workers.Count <= 1_000_000)
             {
@@ -112,7 +121,8 @@ namespace HomeWork8
                     } while (!Int32.TryParse(Console.ReadLine(), out salary));
                 } while (salary <= 0);
 
-                workers.Add(new Worker(surname, name, age, this, workers.Count + 1, salary));
+
+                workers.Insert(idWorker - 1, new Worker(surname, name, age, this, idWorker, salary));
             }
             else
             {
@@ -121,15 +131,56 @@ namespace HomeWork8
         }
 
         /// <summary>
+        /// Удалить сотрудника. Возращает True если сотрудник удален
+        /// </summary>
+        /// <param name="idWorker">Идентификатор сотрудника</param>
+        public bool RemoveWorker(int idWorker)
+        {
+            if (idWorker < workers.Count)
+            {
+                workers.RemoveAt(idWorker - 1);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Редактировать сотрудника. Возращает True если получилось отредактировать сотрудника
+        /// </summary>
+        /// <param name="idWorker"></param>
+        /// <returns></returns>
+        public bool EditWorker(int idWorker)
+        {
+            if (RemoveWorker(idWorker))
+            {
+                AddWorker(idWorker);
+            }
+            
+            return false;
+        }
+
+        /// <summary>
         /// Добавить вложенный департамент
         /// </summary>
-        public void AddSubDepartment()
+        /// <returns></returns>
+        public bool AddSubDepartment()
         {
             if (SubDepartment == null)
             {
                 SubDepartment = new List<Department>();
             }
 
+            return AddSubDepartment(SubDepartment.Count);
+        }
+
+        /// <summary>
+        /// Добавить вложенный департамент
+        /// </summary>
+        /// <param name="index">Индекс записи</param>
+        /// <returns></returns>
+        private bool AddSubDepartment(int index)
+        {
             string name;
             DateTime date;
 
@@ -144,7 +195,55 @@ namespace HomeWork8
                 Console.WriteLine("Введите дату создания департамента:");
             } while (!DateTime.TryParse(Console.ReadLine(), out date));
 
-            SubDepartment.Add(new Department(name, date));
+            bool canAdd = true;
+
+            for (int i = 0; i < SubDepartment.Count; i++)
+            {
+                if (SubDepartment[i].Name == name)
+                {
+                    canAdd = false;
+                    break;
+                }
+            }
+
+            if (canAdd)
+            {
+                SubDepartment.Insert(index, new Department(name, date));
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Удалит вложенный департамент по индексу
+        /// </summary>
+        /// <param name="index">Индекс</param>
+        /// <returns></returns>
+        public bool RemoveDepartment(int index)
+        {
+            if (index < SubDepartment.Count)
+            {
+                SubDepartment.RemoveAt(index);
+                return true;
+            }
+
+            return false;
+        }
+
+        /// <summary>
+        /// Редактировать вложенный департамент
+        /// </summary>
+        /// <param name="index"></param>
+        /// <returns></returns>
+        public bool EditSubDepartment(int index)
+        {
+            if (RemoveDepartment(index))
+            {
+                AddSubDepartment(index);
+            }
+
+            return false;
         }
 
         /// <summary>
@@ -171,6 +270,13 @@ namespace HomeWork8
             if (SubDepartment != null)
             {
                 Console.WriteLine($"Количество вложенных департаментов {SubDepartment.Count}.");
+
+                Console.WriteLine("Вложенные департаменты: ");
+
+                for (int i = 1; i <= SubDepartment.Count; i++)
+                {
+                    Console.WriteLine($"{i} - {SubDepartment[i - 1].Name}");
+                }
             }
 
             if (workers.Count > 0)
