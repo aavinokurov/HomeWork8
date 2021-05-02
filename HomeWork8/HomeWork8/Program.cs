@@ -84,9 +84,14 @@ namespace HomeWork8
                                               "6 - Добавить сотрудника\n" +
                                               "7 - Редактировать сотрудника\n" +
                                               "8 - Удалить сотрудника\n" +
-                                              "9 - Вывести всю информацию о департаменте включаю вложенные.");
+                                              "9 - Сортировать по фамилии\n" +
+                                              "10 - Сортировать по имени\n" +
+                                              "11 - Сортировка по возрасту\n" +
+                                              "12 - Сортировка по идентификатору\n" +
+                                              "13 - Сортировка по зарплате\n" +
+                                              "14 - Вывести всю информацию о департаменте включаю вложенные.");
                         } while (!Int32.TryParse(Console.ReadLine(), out answer));
-                    } while (answer < 1 || answer > 9);
+                    } while (answer < 1 || answer > 14);
 
                     int idWorker;
 
@@ -154,6 +159,56 @@ namespace HomeWork8
                             }
                             break;
                         case 9:
+                            if (currentDepartment.CountWorkers > 0)
+                            {
+                                currentDepartment.SortBySurname();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Данное действие недоступно!");
+                            }
+                            break;
+                        case 10:
+                            if (currentDepartment.CountWorkers > 0)
+                            {
+                                currentDepartment.SortByName();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Данное действие недоступно!");
+                            }
+                            break;
+                        case 11:
+                            if (currentDepartment.CountWorkers > 0)
+                            {
+                                currentDepartment.SortByAge();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Данное действие недоступно!");
+                            }
+                            break;
+                        case 12:
+                            if (currentDepartment.CountWorkers > 0)
+                            {
+                                currentDepartment.SortById();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Данное действие недоступно!");
+                            }
+                            break;
+                        case 13:
+                            if (currentDepartment.CountWorkers > 0)
+                            {
+                                currentDepartment.SortBySalary();
+                            }
+                            else
+                            {
+                                Console.WriteLine("Данное действие недоступно!");
+                            }
+                            break;
+                        case 14:
                             currentDepartment.PrintAllInfoDepartment();
                             break;
                     }

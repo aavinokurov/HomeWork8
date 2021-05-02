@@ -200,6 +200,101 @@ namespace HomeWork8
         }
 
         /// <summary>
+        /// Сортировка по возрасту
+        /// </summary>
+        public void SortByAge()
+        {
+            for (int i = 0; i < workers.Count; i++)
+            {
+                for (int j = i + 1; j < workers.Count; j++)
+                {
+                    if (workers[i].Age > workers[j].Age)
+                    {
+                        Worker temp = workers[i];
+                        workers[i] = workers[j];
+                        workers[j] = temp;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Сортировка по Id
+        /// </summary>
+        public void SortById()
+        {
+            for (int i = 0; i < workers.Count; i++)
+            {
+                for (int j = i + 1; j < workers.Count; j++)
+                {
+                    if (workers[i].Id > workers[j].Id)
+                    {
+                        Worker temp = workers[i];
+                        workers[i] = workers[j];
+                        workers[j] = temp;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Сортировка по зарплате
+        /// </summary>
+        public void SortBySalary()
+        {
+            for (int i = 0; i < workers.Count; i++)
+            {
+                for (int j = i + 1; j < workers.Count; j++)
+                {
+                    if (workers[i].Salary > workers[j].Salary)
+                    {
+                        Worker temp = workers[i];
+                        workers[i] = workers[j];
+                        workers[j] = temp;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Сортировка по Имени
+        /// </summary>
+        public void SortByName()
+        {
+            for (int i = 0; i < workers.Count; i++)
+            {
+                for (int j = i + 1; j < workers.Count; j++)
+                {
+                    if (workers[i].Name.CompareTo(workers[j].Name) > 0)
+                    {
+                        Worker temp = workers[i];
+                        workers[i] = workers[j];
+                        workers[j] = temp;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Сортировка по фамилии
+        /// </summary>
+        public void SortBySurname()
+        {
+            for (int i = 0; i < workers.Count; i++)
+            {
+                for (int j = i + 1; j < workers.Count; j++)
+                {
+                    if (workers[i].Surname.CompareTo(workers[j].Surname) > 0)
+                    {
+                        Worker temp = workers[i];
+                        workers[i] = workers[j];
+                        workers[j] = temp;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
         /// Добавить вложенный департамент
         /// </summary>
         /// <returns></returns>
