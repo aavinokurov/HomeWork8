@@ -19,13 +19,9 @@ namespace HomeWork8
         {
             bool isRun = true;
 
-            List<Department> departments = new List<Department>();
+            XMLFuns xML = new XMLFuns("Department.xml");
 
-            departments.Add(new Department("Department1",new DateTime(2021,1,1)));
-            departments.Add(new Department("Department2",new DateTime(2021,1,1)));
-            departments.Add(new Department("Department3",new DateTime(2021,1,1)));
-
-            Department mainDepartment = new Department("MainDepartment", DateTime.Now,departments);
+            Department mainDepartment = xML.LoadFile();
 
             currentDepartment = mainDepartment;
 
