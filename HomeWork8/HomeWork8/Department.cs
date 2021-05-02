@@ -39,6 +39,11 @@ namespace HomeWork8
         /// </summary>
         public List<Department> SubDepartment { get; private set; }
 
+        /// <summary>
+        /// Сотрудники
+        /// </summary>
+        public List<Worker> Workers { get { return workers; } }
+
         #endregion
 
         #region Конструкторы
@@ -67,6 +72,18 @@ namespace HomeWork8
             this.SubDepartment = subDepartments;
         }
 
+        /// <summary>
+        /// Создать новый департамент
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="dateCreation"></param>
+        /// <param name="workers"></param>
+        /// <param name="subDepartments"></param>
+        public Department(string name, DateTime dateCreation, List<Worker> workers, List<Department> subDepartments)
+            : this(name, dateCreation, subDepartments)
+        {
+            this.workers = workers;
+        }
 
         #endregion
 
@@ -77,14 +94,16 @@ namespace HomeWork8
         /// </summary>
         public void AddWorker()
         {
-            AddWorker(workers.Count + 1);
+            int tempId = workers.Count > 0 ? workers[workers.Count - 1].Id + 1 : 1 ;
+
+            AddWorker(workers.Count, tempId);
         }
 
         /// <summary>
         /// Добавить нового работника
         /// </summary>
         /// <param name="idWorker">Идентификатор сотрудника</param>
-        private void AddWorker(int idWorker)
+        private void AddWorker(int count, int idWorker)
         {
             if (workers.Count <= 1_000_000)
             {
@@ -121,8 +140,7 @@ namespace HomeWork8
                     } while (!Int32.TryParse(Console.ReadLine(), out salary));
                 } while (salary <= 0);
 
-
-                workers.Insert(idWorker - 1, new Worker(surname, name, age, this, idWorker, salary));
+                workers.Insert(count, new Worker(surname, name, age, this, idWorker, salary));
             }
             else
             {
@@ -136,10 +154,27 @@ namespace HomeWork8
         /// <param name="idWorker">Идентификатор сотрудника</param>
         public bool RemoveWorker(int idWorker)
         {
-            if (idWorker < workers.Count)
+           return RemoveWorker(idWorker, out int x);
+        }
+
+        /// <summary>
+        /// Удалить сотрудника. Возращает True если сотрудник удален
+        /// </summary>
+        /// <param name="idWorker">Идентификатор сотрудника</param>
+        public bool RemoveWorker(int idWorker, out int index)
+        {
+            index = -1;
+
+            for (int i = 0; i < workers.Count; i++)
             {
-                workers.RemoveAt(idWorker - 1);
-                return true;
+                if (workers[i].Id == idWorker)
+                {
+                    workers.Remove(workers[i]);
+
+                    index = i;
+
+                    return true;
+                }
             }
 
             return false;
@@ -152,9 +187,13 @@ namespace HomeWork8
         /// <returns></returns>
         public bool EditWorker(int idWorker)
         {
-            if (RemoveWorker(idWorker))
+            int index;
+
+            if (RemoveWorker(idWorker, out index))
             {
-                AddWorker(idWorker);
+                AddWorker(index,idWorker);
+
+                return true;
             }
             
             return false;
@@ -171,7 +210,7 @@ namespace HomeWork8
                 SubDepartment = new List<Department>();
             }
 
-            return AddSubDepartment(SubDepartment.Count);
+            return AddSubDepartment(SubDepartment.Count, new List<Worker>(), null);
         }
 
         /// <summary>
@@ -179,7 +218,7 @@ namespace HomeWork8
         /// </summary>
         /// <param name="index">Индекс записи</param>
         /// <returns></returns>
-        private bool AddSubDepartment(int index)
+        private bool AddSubDepartment(int index, List<Worker> workers, List<Department> departments)
         {
             string name;
             DateTime date;
@@ -208,7 +247,7 @@ namespace HomeWork8
 
             if (canAdd)
             {
-                SubDepartment.Insert(index, new Department(name, date));
+                SubDepartment.Insert(index, new Department(name, date, workers, departments));
                 return true;
             }
 
@@ -236,11 +275,11 @@ namespace HomeWork8
         /// </summary>
         /// <param name="index"></param>
         /// <returns></returns>
-        public bool EditSubDepartment(int index)
+        public bool EditSubDepartment(int index, List<Worker> workers, List<Department> departments)
         {
             if (RemoveDepartment(index))
             {
-                AddSubDepartment(index);
+                AddSubDepartment(index, workers, departments);
             }
 
             return false;

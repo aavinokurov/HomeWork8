@@ -5,3 +5,6 @@ C:\C#\HomeWork8\HomeWork8\HomeWork8\obj\Debug\HomeWork8.csprojAssemblyReference.
 C:\C#\HomeWork8\HomeWork8\HomeWork8\obj\Debug\HomeWork8.csproj.CoreCompileInputs.cache
 C:\C#\HomeWork8\HomeWork8\HomeWork8\obj\Debug\HomeWork8.exe
 C:\C#\HomeWork8\HomeWork8\HomeWork8\obj\Debug\HomeWork8.pdb
+C:\C#\HomeWork8\HomeWork8\HomeWork8\bin\Debug\Newtonsoft.Json.dll
+C:\C#\HomeWork8\HomeWork8\HomeWork8\bin\Debug\Newtonsoft.Json.xml
+C:\C#\HomeWork8\HomeWork8\HomeWork8\obj\Debug\HomeWork8.csproj.CopyComplete
