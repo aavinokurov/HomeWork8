@@ -2,12 +2,43 @@
 <DEPARTMENT Name="MainDepartment" DateCreation="2021-05-02T17:33:31.5156413+03:00">
   <SUBDEPARTMENT>
     <DEPARTMENT Name="Department1" DateCreation="2021-01-01T00:00:00">
-      <SUBDEPARTMENT />
-      <WORKERS />
+      <SUBDEPARTMENT>
+        <DEPARTMENT Name="Department1_1" DateCreation="2021-05-05T00:00:00">
+          <SUBDEPARTMENT />
+          <WORKERS>
+            <WORKER Surname="А" Name="Б" Age="55" Id="1" Salary="22000" />
+          </WORKERS>
+        </DEPARTMENT>
+      </SUBDEPARTMENT>
+      <WORKERS>
+        <WORKER Surname="Иван" Name="Иванов" Age="34" Id="1" Salary="5000" />
+        <WORKER Surname="Петров" Name="Петр" Age="21" Id="2" Salary="6000" />
+        <WORKER Surname="Пупкин" Name="Вася" Age="44" Id="3" Salary="1000" />
+      </WORKERS>
     </DEPARTMENT>
     <DEPARTMENT Name="Department2" DateCreation="2021-01-01T00:00:00">
-      <SUBDEPARTMENT />
-      <WORKERS />
+      <SUBDEPARTMENT>
+        <DEPARTMENT Name="Department2_1" DateCreation="2021-02-02T00:00:00">
+          <SUBDEPARTMENT>
+            <DEPARTMENT Name="Department2_1_1" DateCreation="2021-03-03T00:00:00">
+              <SUBDEPARTMENT />
+              <WORKERS />
+            </DEPARTMENT>
+            <DEPARTMENT Name="Department2_1_2" DateCreation="2021-08-08T00:00:00">
+              <SUBDEPARTMENT />
+              <WORKERS>
+                <WORKER Surname="Иванов" Name="Иван" Age="55" Id="1" Salary="10000" />
+              </WORKERS>
+            </DEPARTMENT>
+          </SUBDEPARTMENT>
+          <WORKERS />
+        </DEPARTMENT>
+      </SUBDEPARTMENT>
+      <WORKERS>
+        <WORKER Surname="А" Name="В" Age="25" Id="1" Salary="25000" />
+        <WORKER Surname="В" Name="А" Age="44" Id="3" Salary="44000" />
+        <WORKER Surname="Б" Name="Б" Age="87" Id="2" Salary="87000" />
+      </WORKERS>
     </DEPARTMENT>
     <DEPARTMENT Name="Department3" DateCreation="2021-01-01T00:00:00">
       <SUBDEPARTMENT>

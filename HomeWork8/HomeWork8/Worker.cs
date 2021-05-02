@@ -28,7 +28,7 @@ namespace HomeWork8
         /// <summary>
         /// Департамент
         /// </summary>
-        public Department Department { get; private set; }
+        public string NameDepartment { get; private set; }
 
         /// <summary>
         /// Идентификатор
@@ -53,12 +53,12 @@ namespace HomeWork8
         /// <param name="department">Департамент</param>
         /// <param name="id">Идентификатор</param>
         /// <param name="salary">Размер заработной платы</param>
-        public Worker(string surname, string name, int age, Department department, int id, int salary)
+        public Worker(string surname, string name, int age, string nameDepartment, int id, int salary)
         {
             this.Surname = surname;
             this.Name = name;
             this.Age = age;
-            this.Department = department;
+            this.NameDepartment = nameDepartment;
             this.Id = id;
             this.Salary = salary;
         }

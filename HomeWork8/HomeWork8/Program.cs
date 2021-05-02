@@ -42,9 +42,10 @@ namespace HomeWork8
                         {
                             Console.WriteLine("Выберите команду:\n" +
                                               "1 - Далее\n" +
-                                              "2 - Добавить департамент");
+                                              "2 - Добавить департамент\n" +
+                                              "3 - Выход");
                         } while (!Int32.TryParse(Console.ReadLine(), out answer));
-                    } while (answer < 1 || answer > 2);
+                    } while (answer < 1 || answer > 3);
 
                     switch (answer)
                     {
@@ -60,6 +61,10 @@ namespace HomeWork8
                             break;
                         case 2:
                             currentDepartment.AddSubDepartment();
+                            break;
+                        case 3:
+                            xML.SaveFile(mainDepartment);
+                            isRun = false;
                             break;
                     }
                 }
@@ -85,9 +90,10 @@ namespace HomeWork8
                                               "11 - Сортировка по возрасту\n" +
                                               "12 - Сортировка по идентификатору\n" +
                                               "13 - Сортировка по зарплате\n" +
-                                              "14 - Вывести всю информацию о департаменте включаю вложенные.");
+                                              "14 - Вывести всю информацию о департаменте включаю вложенные\n" +
+                                              "15 - Выход.");
                         } while (!Int32.TryParse(Console.ReadLine(), out answer));
-                    } while (answer < 1 || answer > 14);
+                    } while (answer < 1 || answer > 15);
 
                     int idWorker;
 
@@ -206,6 +212,10 @@ namespace HomeWork8
                             break;
                         case 14:
                             currentDepartment.PrintAllInfoDepartment();
+                            break;
+                        case 15:
+                            xML.SaveFile(mainDepartment);
+                            isRun = false;
                             break;
                     }
                 }

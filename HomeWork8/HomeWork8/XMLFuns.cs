@@ -116,7 +116,7 @@ namespace HomeWork8
 
             foreach (var item in Xdepartment.Element("WORKERS").Elements("WORKER"))
             {
-                workers.Add(WorkerDeserialization(item, result));
+                workers.Add(WorkerDeserialization(item, name));
             }
 
             result = new Department(name, dateTime, workers, subDepartments);
@@ -130,7 +130,7 @@ namespace HomeWork8
         /// <param name="XWorker">Сотрудник</param>
         /// <param name="department">Департамент</param>
         /// <returns></returns>
-        public Worker WorkerDeserialization(XElement XWorker, Department department)
+        public Worker WorkerDeserialization(XElement XWorker, string department)
         {
             string surname = XWorker.Attribute("Surname").Value;
             string name = XWorker.Attribute("Name").Value;

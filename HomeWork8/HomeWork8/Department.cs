@@ -94,6 +94,8 @@ namespace HomeWork8
         /// </summary>
         public void AddWorker()
         {
+            SortById();
+
             int tempId = workers.Count > 0 ? workers[workers.Count - 1].Id + 1 : 1 ;
 
             AddWorker(workers.Count, tempId);
@@ -140,7 +142,7 @@ namespace HomeWork8
                     } while (!Int32.TryParse(Console.ReadLine(), out salary));
                 } while (salary <= 0);
 
-                workers.Insert(count, new Worker(surname, name, age, this, idWorker, salary));
+                workers.Insert(count, new Worker(surname, name, age, this.Name, idWorker, salary));
             }
             else
             {
@@ -389,7 +391,7 @@ namespace HomeWork8
 
             foreach (var item in workers)
             {
-                Console.WriteLine($"{item.Surname,15}{item.Name,15}{item.Age,10}{item.Department.Name,15}{item.Id,15}{item.Salary,10}");
+                Console.WriteLine($"{item.Surname,15}{item.Name,15}{item.Age,10}{item.NameDepartment,15}{item.Id,15}{item.Salary,10}");
             }
         }
 
